@@ -1,2 +1,2 @@
 # cursoSelenium
-Esto es el primer commit!!!
+Esto es el EJERCICIO 2
