@@ -1,9 +1,13 @@
 package clase7.Ejercicio1;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 public class DocuSignTest {
 
@@ -22,7 +26,7 @@ public class DocuSignTest {
 
         DocusignLandingPage docusignLandingPage = new DocusignLandingPage(driver);
 
-        DocusignFreeTrial docusignFreeTrial = docusignLandingPage.goToFreeTrial();
+        DocusignFreeTrialPage docusignFreeTrial = docusignLandingPage.goToFreeTrial();
 
         docusignFreeTrial.fillFirstName("Gala");
         docusignFreeTrial.fillLastName("Gomez");
@@ -31,9 +35,21 @@ public class DocuSignTest {
         docusignFreeTrial.fillJobTitle("Engineer");
         docusignFreeTrial.selectIndustry();
 
-        docusignFreeTrial.validateNoErrors();
+        List<WebElement> errorList= docusignFreeTrial.getErrorList();
 
+        Assert.assertEquals(errorList.size(),0, "Se esperaba no obtener errores");
+    }
 
+    @Test
+    public void docuSignFailTest() throws InterruptedException {
+        DocusignLandingPage docusignLandingPage = new DocusignLandingPage(driver);
+
+        DocusignFreeTrialPage docusignFreeTrial = docusignLandingPage.goToFreeTrial();
+        docusignFreeTrial.clickGetStartedButton();
+        List<WebElement> errorList = docusignFreeTrial.getErrorList();
+
+        Thread.sleep(3000);
+        Assert.assertEquals(errorList.size(),6, "Se esperaban 6 errores");
     }
 
 

@@ -11,9 +11,9 @@ public class DocusignLandingPage {
         driver = remoteDriver;
     }
 
-    public DocusignFreeTrial goToFreeTrial (){
+    public DocusignFreeTrialPage goToFreeTrial (){
         driver.findElement(By.xpath("//*[@href='https://go.docusign.com/o/trial']")).click();
-        DocusignFreeTrial docusignFreeTrial = new DocusignFreeTrial(driver);
+        DocusignFreeTrialPage docusignFreeTrial = new DocusignFreeTrialPage(driver);
         return docusignFreeTrial;
     }
 }
