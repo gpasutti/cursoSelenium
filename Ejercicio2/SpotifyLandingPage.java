@@ -12,12 +12,14 @@ public class SpotifyLandingPage {
         this.driver = remoteDriver;
     }
 
-    public void validateTitleAndUrlLandingPage(){
+    public String getTitle(){
         String landingTitle = driver.getTitle();
-        String landingURL = driver.getCurrentUrl();
+        return landingTitle;
+    }
 
-        Assert.assertEquals(landingTitle,"Escuchar es todo - Spotify", "Se esperaba otro título");
-        Assert.assertEquals(landingURL, "https://www.spotify.com/ar/", "Se esperaba otra URL");
+    public String getURL(){
+        String landingURL = driver.getCurrentUrl();
+        return landingURL;
     }
 
     public SpotifyRegistrationPage clickOnRegistrarse (){

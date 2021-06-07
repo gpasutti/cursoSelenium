@@ -12,12 +12,14 @@ public class SpotifyRegistrationPage {
      this.driver = remoteDriver;
  }
 
-    public void validateTitleAndUrlRegistrationPage(){
-        String registroTitle = driver.getTitle();
-        String registroURL = driver.getCurrentUrl();
+    public String getTitle(){
+        String registerTitle = driver.getTitle();
+        return registerTitle;
+    }
 
-        Assert.assertEquals(registroTitle,"Registrarte - Spotify", "Se esperaba otro título");
-        Assert.assertEquals(registroURL, "https://www.spotify.com/ar/signup/", "Se esperaba otra URL");
+    public String getURL(){
+        String registerURL = driver.getCurrentUrl();
+        return registerURL;
     }
 
     public void completeEmailField (){
@@ -25,10 +27,9 @@ public class SpotifyRegistrationPage {
         driver.findElement(By.id("confirm")).click();
     }
 
-    public void validateEmailError(){
-        WebElement emailError = driver.findElement(By.xpath("//*[contains(text(), 'Este correo electrónico no es válido. Asegúrate de que tenga un formato como este: ejemplo@email.com')]"));
-        Assert.assertEquals(emailError.getText(), "Este correo electrónico no es válido. Asegúrate de que tenga un formato como este: ejemplo@email.com", "Se esperaba otro texto de error");
-
+    public String getEmailError(){
+        String emailError = driver.findElement(By.xpath("//*[contains(text(), 'Este correo electrónico no es válido. Asegúrate de que tenga un formato como este: ejemplo@email.com')]")).getText();
+        return emailError;
     }
 
 }

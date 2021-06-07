@@ -2,6 +2,7 @@ package clase7.Ejercicio2;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -21,16 +22,28 @@ public class SpotifyTest {
     public void spotifyTest() throws InterruptedException {
 
         SpotifyLandingPage spotifyLandingPage = new SpotifyLandingPage(driver);
-        spotifyLandingPage.validateTitleAndUrlLandingPage();
+
+        String landingTitle = spotifyLandingPage.getTitle();
+        String landingURL = spotifyLandingPage.getURL();
+        Assert.assertEquals(landingTitle,"Escuchar es todo - Spotify", "Se esperaba otro título");
+        Assert.assertEquals(landingURL, "https://www.spotify.com/ar/", "Se esperaba otra URL");
 
         Thread.sleep(3000);
         SpotifyRegistrationPage spotifyRegistrationPage = spotifyLandingPage.clickOnRegistrarse();
 
         Thread.sleep(3000);
-        spotifyRegistrationPage.validateTitleAndUrlRegistrationPage();
+
+        String registerTitle = spotifyRegistrationPage.getTitle();
+        String registerURL = spotifyRegistrationPage.getURL();
+
+        Assert.assertEquals(registerTitle,"Registrarte - Spotify", "Se esperaba otro título");
+        Assert.assertEquals(registerURL, "https://www.spotify.com/ar/signup/", "Se esperaba otra URL");
 
         spotifyRegistrationPage.completeEmailField();
-        spotifyRegistrationPage.validateEmailError();
+        String emailError = spotifyRegistrationPage.getEmailError();
+
+        Assert.assertEquals(emailError, "Este correo electrónico no es válido. Asegúrate de que tenga un formato como este: ejemplo@email.com", "Se esperaba otro texto de error");
+
 
     }
 
