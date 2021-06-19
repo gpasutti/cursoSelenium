@@ -1,0 +1,15 @@
+<suite name = "Prueba">
+
+    <parameter name = "tagName" value ="h1"></parameter>
+
+
+    <test name = "Prueba SeleniumBasico">
+        <classes>
+            <class name = "ExamenSeleniumBasico.InterviewQuestionSiteTest"></class>
+            <class name = "ExamenSeleniumBasico.PruebaNetflixTest"></class>
+        </classes>
+
+
+
+    </test>
+</suite>
